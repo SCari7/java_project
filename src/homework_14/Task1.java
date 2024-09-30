@@ -6,6 +6,7 @@ public class Task1 {
         int sum = sumOfEvenNumbers(number);
         System.out.println("Сумма всех четных чисел: " + sum);
 
+
     }
 
     public static int sumOfEvenNumbers(int[] array) {
