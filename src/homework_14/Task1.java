@@ -8,6 +8,8 @@ public class Task1 {
 
 
     }
+    // проверка
+
 
     public static int sumOfEvenNumbers(int[] array) {
         int sum = 0;
