@@ -1,24 +1,27 @@
-package classwork_18.computer.model;
+package classwork_19.compare_computers;
+
 //- cpu
 //- ram
 //- ssd
 //- brand
 //- price
-public class Computer {
 
+import java.util.Objects;
+
+public class ComputerBad {
 
     private String cpu;
-    private  int ram;
+    private int ram;
     private int ssd;
     private String brand;
-    private double prise;
+    private double price;
 
-    public Computer(String cpu, int ram, int ssd, String brand, double prise) {
+    public ComputerBad(String cpu, int ram, int ssd, String brand, double price) {
         this.cpu = cpu;
         this.ram = ram;
         this.ssd = ssd;
         this.brand = brand;
-        this.prise = prise;
+        this.price = price;
     }
 
     public String getCpu() {
@@ -53,12 +56,12 @@ public class Computer {
         this.brand = brand;
     }
 
-    public double getPrise() {
-        return prise;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPrise(double prise) {
-        this.prise = prise;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
@@ -68,8 +71,20 @@ public class Computer {
                 ", ram=" + ram +
                 ", ssd=" + ssd +
                 ", brand='" + brand + '\'' +
-                ", prise=" + prise +
+                ", price=" + price +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ComputerBad that)) return false;
+        return ram == that.ram && ssd == that.ssd && Double.compare(price, that.price) == 0 && Objects.equals(cpu, that.cpu) && Objects.equals(brand, that.brand);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cpu, ram, ssd, brand, price);
+    }
 }
+

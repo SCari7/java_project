@@ -11,7 +11,7 @@ public class Smartphone extends Laptop{
     @Override
     public String toString() {
         return "Smartphone{" +
-                "imei=" + imei +
+                "imei=" + imei + super.toString() +
                 '}';
     }
 }

@@ -54,6 +54,6 @@ public class Laptop extends Computer{
                 ", weight=" + weight +
                 ", batteryLife=" + batteryLife +
                 ", color='" + color + '\'' +
-                '}' + super.toString();//Todo
+                '}' ;//Todo
     }
 }
