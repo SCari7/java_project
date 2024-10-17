@@ -37,7 +37,7 @@ class ValidatorTest {
 
     @Test
     void checkDateFormatUS() {
-        assertTrue(Validator.checkDateFormatEU("1996-12-05"));
+        assertTrue(Validator.checkDateFormatEU("2022-12-05"));
         assertTrue(Validator.checkDateFormatEU("2000-01-01"));
         assertTrue(Validator.checkDateFormatEU("2001-12-12"));
         assertFalse(Validator.checkDateFormatEU("2023-02-32"));

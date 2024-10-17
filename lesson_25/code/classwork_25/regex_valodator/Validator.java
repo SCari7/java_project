@@ -6,7 +6,7 @@ package classwork_25.regex_valodator;
         public static void main(String[] args) {
             System.out.println(checkCreditCardNumber("12345678"));
             System.out.println(checkDateFormatEU("11.12.1996"));
-            System.out.println(checkDateFormatUS("1996-12-05"));
+            System.out.println(checkDateFormatUS("2022-12-05"));
             System.out.println(checkPhoneNumber( "+99(99)9999-9999"));
             System.out.println(checkLessEquals255(""));
         }
