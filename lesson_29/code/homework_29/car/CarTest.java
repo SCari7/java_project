@@ -65,7 +65,7 @@ class CarTest {
         };
         System.out.println("--------Cars--------");
         printCars();
-        Arrays.sort(cars);
+        Arrays.sort(cars, comparatorByColor);
         System.out.println("-----Cars by Color------");
         printCars();
     }
