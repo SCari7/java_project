@@ -1,7 +1,7 @@
-package classwork_23.book_library.test;
+package homework_27.proect.book_library.test;
 
-import classwork_23.book_library.controller.Library;
-import classwork_23.book_library.model.Book;
+import homework_27.proect.book_library.controller.Library;
+import homework_27.proect.book_library.model.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

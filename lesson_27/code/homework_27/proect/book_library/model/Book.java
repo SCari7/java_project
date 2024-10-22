@@ -1,4 +1,4 @@
-package classwork_23.book_library.model;
+package homework_27.proect.book_library.model;
 
 import java.util.Objects;
 

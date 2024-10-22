@@ -63,6 +63,18 @@ public abstract class Detail {
     }
 
     @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Detail{");
+        sb.append("barCode=").append(barCode);
+        sb.append(", size=").append(size);
+        sb.append(", material='").append(material).append('\'');
+        sb.append(", vendor='").append(vendor).append('\'');
+        sb.append(", weight=").append(weight);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Detail detail)) return false;

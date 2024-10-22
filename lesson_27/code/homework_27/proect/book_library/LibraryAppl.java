@@ -1,7 +1,7 @@
-package classwork_23.book_library;
+package homework_27.proect.book_library;
 
-import classwork_23.book_library.controller.Library;
-import classwork_23.book_library.model.Book;
+import homework_27.proect.book_library.controller.Library;
+import homework_27.proect.book_library.model.Book;
 
 public class LibraryAppl {
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class LibraryAppl {
             library.addBook(books[i]);
 
         }
-        classwork_23.book_library.controller.Library.printBooks();
+        homework_27.proect.book_library.controller.Library.printBooks();
         System.out.println(library.size());
 
 
@@ -25,13 +25,13 @@ public class LibraryAppl {
         library.addBook(newBook);
         System.out.println("===================");
 
-        classwork_23.book_library.controller.Library.printBooks();
+        homework_27.proect.book_library.controller.Library.printBooks();
         System.out.println(library.size());
 
         library.removeBook(1_111_111_111_112L);
         System.out.println("====================");
 
-        classwork_23.book_library.controller.Library.printBooks();
+        homework_27.proect.book_library.controller.Library.printBooks();
         System.out.println(library.size());
 
 

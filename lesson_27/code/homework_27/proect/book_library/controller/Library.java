@@ -1,9 +1,10 @@
-package classwork_23.book_library.controller;
+package homework_27.proect.book_library.controller;
 
 
-import classwork_23.book_library.model.Book;
+import homework_27.proect.book_library.BookInterface;
+import homework_27.proect.book_library.model.Book;
 
-public class Library {
+public class Library implements BookInterface {
 
     // fields
     private static Book[] books;
@@ -79,6 +80,25 @@ public class Library {
         return size;
     }
 
+    @Override
+    public boolean create(homework_27.proect.book.Library library) {
+        return false;
+    }
+
+    @Override
+    public homework_27.proect.book.Library read(String id) {
+        return null;
+    }
+
+    @Override
+    public void update(homework_27.proect.book.Library library) {
+
+    }
+
+    @Override
+    public void delete(String id) {
+
+    }
 }
 //public class Library {
 //    //fields

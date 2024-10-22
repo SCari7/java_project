@@ -49,26 +49,26 @@ class CompanyImplTest {
     }
 
     @Test
-    void quantity() {
+    void quantityTest() {
     }
 
     @Test
-    void printEmployee() {
+    void printEmployeeTest() {
     }
 
     @Test
-    void totalSalary() {
+    void totalSalaryTest() {
     }
 
     @Test
-    void totalSales() {
+    void totalSalesTest() {
     }
 
     @Test
-    void findEmployeeHoursGreaterThan() {
+    void findEmployeeHoursGreaterThanTest() {
     }
 
     @Test
-    void findEmployeeSalaryRange() {
+    void findEmployeeSalaryRangeTest() {
     }
 }
