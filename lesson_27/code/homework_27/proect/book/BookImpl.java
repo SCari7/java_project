@@ -1,22 +1,22 @@
 package homework_27.proect.book;
 
 public class BookImpl implements BookInterface{
-    private Library[] libraries = new Library[3];
+    private Book[] libraries = new Book[3];
     private int count = 0;
 
 
     @Override
-    public boolean addBook(Library library) {
-        if (library == null) return false;
+    public boolean addBook(Book book) {
+        if (book == null) return false;
         if (count == libraries.length) return false;
 
-        libraries[count] = library; //Library add
+        libraries[count] = book; //Book add
         count++;
         return false;
     }
 
     @Override
-    public Library findBook(String id) {
+    public Book findBook(String id) {
         for (int i = 0; i < count; i++) {
             if (libraries[i].getId().equals(id))
             return libraries[i];
@@ -25,10 +25,10 @@ public class BookImpl implements BookInterface{
     }
 
     @Override
-    public void update(Library library) {
+    public void update(Book book) {
         for (int i = 0; i < count; i++) {
-           if (libraries[i].getId().equals(library.getId())){
-               libraries[i] = library;//обновляем кнгу в масиве
+           if (libraries[i].getId().equals(book.getId())){
+               libraries[i] = book;//обновляем кнгу в масиве
            }
         }
 

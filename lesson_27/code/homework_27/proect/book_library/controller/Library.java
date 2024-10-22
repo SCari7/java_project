@@ -1,23 +1,23 @@
 package homework_27.proect.book_library.controller;
 
 
+import homework_27.proect.book.Book;
 import homework_27.proect.book_library.BookInterface;
-import homework_27.proect.book_library.model.Book;
 
 public class Library implements BookInterface {
 
     // fields
-    private static Book[] books;
+    private static homework_27.proect.book_library.model.Book[] books;
     private static int size; // текущее кол-во книг
 
     // constructor
     public Library(int capacity) {
-        this.books = new Book[capacity];
+        this.books = new homework_27.proect.book_library.model.Book[capacity];
         this.size = 0;
     }
 
     // CRUD methods
-    public boolean addBook(Book book){
+    public boolean addBook(homework_27.proect.book_library.model.Book book){
         // negative cases
         if(book == null){
             return false;
@@ -42,7 +42,7 @@ public class Library implements BookInterface {
     }
 
     // find by author
-    public Book findByAuthor(String author){
+    public homework_27.proect.book_library.model.Book findByAuthor(String author){
         for (int i = 0; i < size; i++) {
             if(books[i].getAuthor().equals(author)){
                 return books[i];
@@ -52,7 +52,7 @@ public class Library implements BookInterface {
     }
 
 
-    public Book findBook(long isbn){
+    public homework_27.proect.book_library.model.Book findBook(long isbn){
         for (int i = 0; i < size; i++) {
             if(books[i].getIsbn() == isbn){
                 return books[i];
@@ -61,10 +61,10 @@ public class Library implements BookInterface {
         return null;
     }
 
-    public Book removeBook(long isbn){
+    public homework_27.proect.book_library.model.Book removeBook(long isbn){
         for (int i = 0; i < size; i++) {
             if(books[i].getIsbn() == isbn){
-                Book victim = books[i];
+                homework_27.proect.book_library.model.Book victim = books[i];
                 books[i] = books[size - 1];// last book put instead victim
                 books[size - 1] = null;// затираем последний элемент массива
                 size--;
@@ -81,17 +81,17 @@ public class Library implements BookInterface {
     }
 
     @Override
-    public boolean create(homework_27.proect.book.Library library) {
+    public boolean create(Book book) {
         return false;
     }
 
     @Override
-    public homework_27.proect.book.Library read(String id) {
+    public Book read(String id) {
         return null;
     }
 
     @Override
-    public void update(homework_27.proect.book.Library library) {
+    public void update(Book book) {
 
     }
 
@@ -100,22 +100,22 @@ public class Library implements BookInterface {
 
     }
 }
-//public class Library {
+//public class Book {
 //    //fields
-//    private Library[] books;
+//    private Book[] books;
 //    private int size;// текущее кол. во книг в библиотеке
 //
 //
 //    //constructor
-//    public Library(int capacity) {
-//        this.books = new Library[capacity];// длина массива
+//    public Book(int capacity) {
+//        this.books = new Book[capacity];// длина массива
 //        this.size = 0;//пока еще ни одного объекта
 //    }
 //
 //
 //    //CRUD METHODS!!!!!!!!!!!!
-//    // boolean addBook (Library book)
-//    public boolean addBook(Library book) {
+//    // boolean addBook (Book book)
+//    public boolean addBook(Book book) {
 //        if (book == null){
 //            return false;
 //        }
@@ -143,8 +143,8 @@ public class Library implements BookInterface {
 //    }
 //
 //
-//    //Library findBook(long isbn)
-//    public Library findBook(long isbn) {
+//    //Book findBook(long isbn)
+//    public Book findBook(long isbn) {
 //        for (int i = 0; i < size; i++) {
 //            if (books[i].getIsbn() == isbn){
 //                return books[i];
@@ -158,12 +158,12 @@ public class Library implements BookInterface {
 //
 //
 //
-//    //Library removeBook (long isbn)
-//    public Library removeBook(long isbn){
-////        Library book = new Library();
+//    //Book removeBook (long isbn)
+//    public Book removeBook(long isbn){
+////        Book book = new Book();
 //        for (int i = 0; i < size; i++) {
 //            if ((books[i].getIsbn() == isbn)){
-//                Library victim = books[i];
+//                Book victim = books[i];
 //                books[i] = books[size-1];
 //                books[size -1] = null;
 //                //last book put instead victim

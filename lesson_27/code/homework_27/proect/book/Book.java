@@ -1,10 +1,8 @@
 package homework_27.proect.book;
 
-import homework_27.proect.book_library.model.Book;
-
 import java.util.Objects;
 
-public class Library {
+public class Book {
 //    private static Book[] books;
 //    private static int size; // текущее кол-во книг
     private int id;
@@ -12,7 +10,7 @@ public class Library {
     private String title;
 
 
-    public Library(int id, String author, String title) {
+    public Book(int id, String author, String title) {
         this.id = id;
         this.author = author;
         this.title = title;
@@ -45,8 +43,8 @@ public class Library {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Library library)) return false;
-        return id == library.id && Objects.equals(author, library.author) && Objects.equals(title, library.title);
+        if (!(o instanceof Book book)) return false;
+        return id == book.id && Objects.equals(author, book.author) && Objects.equals(title, book.title);
     }
 
     @Override
@@ -56,7 +54,7 @@ public class Library {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Library{");
+        final StringBuilder sb = new StringBuilder("Book{");
         sb.append("id=").append(id);
         sb.append(", author='").append(author).append('\'');
         sb.append(", title='").append(title).append('\'');

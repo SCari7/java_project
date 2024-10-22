@@ -1,11 +1,11 @@
 package homework_27.proect.book_library;
 
-import homework_27.proect.book.Library;
+import homework_27.proect.book.Book;
 
 public interface BookInterface {
     //CRUD Method
-    boolean create(Library library);
-    Library read(String id);
-    void update(Library library);
+    boolean create(Book book);
+    Book read(String id);
+    void update(Book book);
     void delete(String id);
 }

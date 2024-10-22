@@ -21,7 +21,7 @@ public class LibraryAppl {
 
 
 
-        Book newBook = new Book("New Library", "New Library",1_111_111_111_115L, 2024);
+        Book newBook = new Book("New Book", "New Book",1_111_111_111_115L, 2024);
         library.addBook(newBook);
         System.out.println("===================");
 

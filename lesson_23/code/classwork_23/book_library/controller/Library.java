@@ -80,22 +80,22 @@ public class Library {
     }
 
 }
-//public class Library {
+//public class Book {
 //    //fields
-//    private Library[] books;
+//    private Book[] books;
 //    private int size;// текущее кол. во книг в библиотеке
 //
 //
 //    //constructor
-//    public Library(int capacity) {
-//        this.books = new Library[capacity];// длина массива
+//    public Book(int capacity) {
+//        this.books = new Book[capacity];// длина массива
 //        this.size = 0;//пока еще ни одного объекта
 //    }
 //
 //
 //    //CRUD METHODS!!!!!!!!!!!!
-//    // boolean addBook (Library book)
-//    public boolean addBook(Library book) {
+//    // boolean addBook (Book book)
+//    public boolean addBook(Book book) {
 //        if (book == null){
 //            return false;
 //        }
@@ -123,8 +123,8 @@ public class Library {
 //    }
 //
 //
-//    //Library findBook(long isbn)
-//    public Library findBook(long isbn) {
+//    //Book findBook(long isbn)
+//    public Book findBook(long isbn) {
 //        for (int i = 0; i < size; i++) {
 //            if (books[i].getIsbn() == isbn){
 //                return books[i];
@@ -138,12 +138,12 @@ public class Library {
 //
 //
 //
-//    //Library removeBook (long isbn)
-//    public Library removeBook(long isbn){
-////        Library book = new Library();
+//    //Book removeBook (long isbn)
+//    public Book removeBook(long isbn){
+////        Book book = new Book();
 //        for (int i = 0; i < size; i++) {
 //            if ((books[i].getIsbn() == isbn)){
-//                Library victim = books[i];
+//                Book victim = books[i];
 //                books[i] = books[size-1];
 //                books[size -1] = null;
 //                //last book put instead victim
