@@ -34,7 +34,7 @@ class CatTest {
         System.out.println("-----------Print---------");
         printArray(cats);
         Arrays.sort(cats);
-        System.out.println("-----------Print after native sorting by Age-----");
+        System.out.println("-------Print after native sorting by Age-----");
         printArray(cats);
     }
 
@@ -50,7 +50,7 @@ class CatTest {
         System.out.println("-----------Print---------");
         printArray(cats);
         Arrays.sort(cats, comparatorByPriceAndBreed);
-        System.out.println("-----------Print after sorting-----");
+        System.out.println("-------Print after sorting-----");
         printArray(cats);
     }
 
@@ -79,7 +79,7 @@ class CatTest {
         System.out.println("-----------Print---------");
         printArray(cats);
         Arrays.sort(cats, (c1,c2) -> Double.compare(c1.getWeight(), c2.getWeight()));
-        System.out.println("-----------Print after sorting by Weight-----");
+        System.out.println("-------Print after sorting by Weight-----");
         printArray(cats);
     }
 //    @Test
@@ -103,7 +103,7 @@ class CatTest {
         System.out.println("-----------Print---------");
         printArray(cats);
         Arrays.sort(cats, (c1,c2) -> (c1.getAge() - c2.getAge()));
-        System.out.println("-----------Print after binary Search -----");
+        System.out.println("------Print after binary Search-----");
         printArray(cats);
 
         Cat pattern = new Cat(null,null,0,4, 0);
