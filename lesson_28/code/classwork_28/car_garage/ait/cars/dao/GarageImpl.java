@@ -73,6 +73,12 @@ public class GarageImpl implements Garage{
         }
     }
 
+    @Override
+    public Car[] printAllCarsSortedByColor(String color) {
+
+        return new Car[0];
+    }
+
     private Car[]findCarsByPredicate(Predicate<Car> predicate){
 // в этот метод перeдаем логические выражение которое будет тестировать объекты типа Car
 int count = 0;
