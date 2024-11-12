@@ -1,0 +1,174 @@
+Конечно, разберем приложение `Citizens`, прокомментируем его методы и укажем вычислительную сложность. Вот откомментированный код:
+
+```java
+package classwork_41.citizens.dao;
+
+import classwork_41.citizens.model.Person;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+public class CitizensImpl implements Citizens {
+
+    // Сравнение по фамилии, при совпадении фамилий - по id
+    private static Comparator<Person> lastNameComparator;
+    private static Comparator<Person> ageComparator;
+
+    static {
+        lastNameComparator = (p1, p2) -> {
+            int res = p1.getLastName().compareTo(p2.getLastName()); // сравнение по фамилии
+            return res != 0 ? res : Integer.compare(p1.getId(), p2.getId()); // если фамилии равны, сравниваем по id
+        };
+        ageComparator = (p1, p2) -> {
+            int res = Integer.compare(p1.getAge(), p2.getAge()); // сравнение по возрасту
+            return res != 0 ? res : Integer.compare(p1.getId(), p2.getId()); // если возраст равен, сравниваем по id
+        };
+    }
+
+    // Списки для хранения данных
+    private List<Person> idList;         // список по id
+    private List<Person> lastNameList;   // список по фамилиям
+    private List<Person> ageList;        // список по возрасту
+
+    // Конструктор: инициализирует пустые списки
+    public CitizensImpl() {
+        idList = new ArrayList<>();
+        lastNameList = new ArrayList<>();
+        ageList = new ArrayList<>();
+    }
+
+    // Конструктор: добавляет всех переданных людей в списки
+    public CitizensImpl(List<Person> citizens) {
+        this();
+        citizens.forEach(this::add);
+    }
+
+    // Добавляет нового гражданина
+    // Сложность: O(log n) для вставки в каждый список, итого O(log n)
+    @Override
+    public boolean add(Person person) {
+        if (person == null) { // проверка на null
+            return false;
+        }
+
+        // Вставка в idList с использованием бинарного поиска
+        int index = Collections.binarySearch(idList, person); // O(log n) - поиск индекса для вставки
+        if (index >= 0) { // если элемент с таким id уже есть, возвращаем false
+            return false;
+        }
+        index = -index - 1; // преобразование индекса для корректной вставки
+        idList.add(index, person); // O(n) - вставка сдвигает элементы вправо
+
+        // Вставка в ageList с использованием компаратора возраста
+        index = Collections.binarySearch(ageList, person, ageComparator);
+        index = index >= 0 ? index : -index - 1;
+        ageList.add(index, person); // O(n) - вставка
+
+        // Вставка в lastNameList с использованием компаратора фамилии
+        index = Collections.binarySearch(lastNameList, person, lastNameComparator);
+        index = index >= 0 ? index : -index - 1;
+        lastNameList.add(index, person); // O(n) - вставка
+
+        return true; // элемент успешно добавлен во все списки
+    }
+
+    // Удаляет гражданина по id
+    // Сложность: O(log n) для поиска + O(n) для удаления из каждого списка, итого O(n)
+    @Override
+    public boolean remove(int id) {
+        Person victim = find(id); // O(log n) - поиск по idList
+        if (victim == null) {
+            return false; // если элемент не найден, возвращаем false
+        }
+
+        // Удаление из всех списков
+        idList.remove(victim);       // O(n) - удаление
+        ageList.remove(victim);      // O(n) - удаление
+        lastNameList.remove(victim); // O(n) - удаление
+
+        return true; // элемент успешно удален
+    }
+
+    // Поиск по id
+    // Сложность: O(log n) - бинарный поиск по idList
+    @Override
+    public Person find(int id) {
+        Person pattern = new Person(id, "", "", LocalDate.now()); // создаем временный объект с нужным id
+        int index = Collections.binarySearch(idList, pattern); // O(log n) - поиск по id
+        return index < 0 ? null : idList.get(index); // возвращаем элемент, если найден, иначе null
+    }
+
+    // Поиск по возрасту: возвращает всех граждан от minAge до maxAge
+    // Сложность: O(log n) для определения индексов + O(k) для подсписка, где k - количество элементов
+    @Override
+    public Iterable<Person> find(int minAge, int maxAge) {
+        LocalDate now = LocalDate.now();
+        Person pattern = new Person(Integer.MIN_VALUE, "", "", now.minusYears(minAge)); // для минимального возраста
+        int from = -Collections.binarySearch(ageList, pattern, ageComparator) - 1; // O(log n) - начало диапазона
+
+        pattern = new Person(Integer.MAX_VALUE, "", "", now.minusYears(maxAge)); // для максимального возраста
+        int to = -Collections.binarySearch(ageList, pattern, ageComparator) - 1; // O(log n) - конец диапазона
+
+        return ageList.subList(from, to); // O(k) - получение подсписка
+    }
+
+    // Поиск по фамилии: возвращает всех граждан с указанной фамилией
+    // Сложность: O(log n) для определения индексов + O(k) для подсписка, где k - количество элементов
+    @Override
+    public Iterable<Person> find(String lastName) {
+        LocalDate now = LocalDate.now();
+        Person pattern = new Person(Integer.MIN_VALUE, "", lastName, now); // для первой позиции с этой фамилией
+        int from = -Collections.binarySearch(lastNameList, pattern, lastNameComparator) - 1; // O(log n) - начало диапазона
+
+        pattern = new Person(Integer.MAX_VALUE, "", lastName, now); // для последней позиции с этой фамилией
+        int to = -Collections.binarySearch(lastNameList, pattern, lastNameComparator) - 1; // O(log n) - конец диапазона
+
+        return lastNameList.subList(from, to); // O(k) - получение подсписка
+    }
+
+    // Возвращает всех граждан, отсортированных по id
+    // Сложность: O(1) - получение уже отсортированного списка
+    @Override
+    public Iterable<Person> getAllPersonSortedById() {
+        return idList; // возвращаем idList, который поддерживается в отсортированном состоянии
+    }
+
+    // Возвращает всех граждан, отсортированных по фамилии
+    // Сложность: O(1) - получение уже отсортированного списка
+    @Override
+    public Iterable<Person> getAllPersonSortedByLastName() {
+        return lastNameList; // возвращаем lastNameList, поддерживаемый в отсортированном состоянии
+    }
+
+    // Возвращает всех граждан, отсортированных по возрасту
+    // Сложность: O(1) - получение уже отсортированного списка
+    @Override
+    public Iterable<Person> getAllPersonSortedByAge() {
+        return ageList; // возвращаем ageList, поддерживаемый в отсортированном состоянии
+    }
+
+    // Возвращает количество граждан
+    // Сложность: O(1) - получение размера списка
+    @Override
+    public int size() {
+        return idList.size(); // так как все списки синхронизированы, достаточно взять размер одного
+    }
+}
+```
+
+### Сводная таблица сложности методов
+
+| Метод                           | Сложность      | Описание                                                                                                                                                           |
+|---------------------------------|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `add(Person person)`            | `O(n)`        | Добавление во все три списка (поиск индекса `O(log n)` и вставка `O(n)`).                                                                                         |
+| `remove(int id)`                | `O(n)`        | Удаление элемента из всех трех списков.                                                                                                                           |
+| `find(int id)`                  | `O(log n)`    | Бинарный поиск по `idList`.                                                                                                                                       |
+| `find(int minAge, int maxAge)`  | `O(log n + k)`| Поиск диапазона в `ageList` с использованием бинарного поиска для `from` и `to`, получение подсписка.                                                             |
+| `find(String lastName)`         | `O(log n + k)`| Поиск диапазона по фамилии с использованием бинарного поиска для `from` и `to`, получение подсписка.                                                              |
+| `getAllPersonSortedById()`      | `O(1)`        | Возвращает отсортированный список `idList`.                                                                                                                       |
+| `getAllPersonSortedByLastName()`| `O(1)`        | Возвращает отсортированный список `lastNameList`.                                                                                                                 |
+| `getAllPersonSortedByAge()`     | `O(1)`        | Возвращает отсортированный список `ageList`.                                                                                                                      |
+| `size()`                        | 
